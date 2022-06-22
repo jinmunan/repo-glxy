@@ -1,12 +1,14 @@
 package com.cj.edu.config;
 
-import com.baomidou.mybatisplus.core.injector.ISqlInjector;
-import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
-import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -19,26 +21,26 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @MapperScan("com.cj.edu.mapper")
 public class MyBatisPlusConfig {
-	/**
-	 * SQL 执行性能分析插件
-	 * 开发环境使用，线上不推荐。 maxTime 指的是 sql 最大执行时长
-	 */
-	@Bean
-	@Profile({"dev", "test"})// 设置 dev test 环境开启
-	public PerformanceInterceptor performanceInterceptor() {
-		PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
-		performanceInterceptor.setMaxTime(1000);//ms，超过此处设置的ms则sql不执行
-		performanceInterceptor.setFormat(true);
-		return performanceInterceptor;
-	}
+    // 演示乐观锁
+//    @Bean
+//    public OptimisticLockerInnerInterceptor optimisticLockerInnerInterceptor() {
+//        return new OptimisticLockerInnerInterceptor();
+//    }
 
-	/**
-	 * 逻辑删除配置
-	 * MBP3.1.1以上版本无需配置
-	 * @return
-	 */
-	@Bean
-	public ISqlInjector sqlInjector() {
-		return new LogicSqlInjector();
-	}
+    // 分页插件
+//    @Bean
+//    public PaginationInnerInterceptor paginationInnerInterceptor() {
+//        return new PaginationInnerInterceptor();
+//    }
+    // 插件综合体
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 分页插件
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        // 乐观锁
+        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        return interceptor;
+    }
+
 }

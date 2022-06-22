@@ -30,7 +30,8 @@ public class Teacher implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "讲师ID")
-    @TableId(value = "id", type = IdType.ID_WORKER)
+    // 定义全局主键配置后,这里可以不用写
+    @TableId(value = "id", type = IdType.AUTO)
     private String id;
 
     @ApiModelProperty(value = "讲师姓名")

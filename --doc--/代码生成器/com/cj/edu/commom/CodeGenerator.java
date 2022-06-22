@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
 /**
+ * mybatis-plus版本在3.0.5左右使用
  * @author
  * @since 2018/12/13
  */
