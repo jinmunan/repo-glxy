@@ -1,4 +1,4 @@
-package com.cj.common.config;
+package com.cj.guli.service.edu.common.config;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;

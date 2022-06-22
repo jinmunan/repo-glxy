@@ -28,7 +28,7 @@
     <properties>
         <java.version>1.8</java.version>
         <guli.version>0.0.1-SNAPSHOT</guli.version>
-        <mybatis-plus.version>3.5.1</mybatis-plus.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
         <velocity.version>2.0</velocity.version>
         <knife4j.version>2.0.7</knife4j.version>
         <aliyun.oss.version>2.8.3</aliyun.oss.version>
@@ -82,7 +82,11 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
             <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
             <dependency>
                 <groupId>org.apache.velocity</groupId>
@@ -144,6 +148,7 @@
                 <artifactId>httpclient</artifactId>
                 <version>${httpclient.version}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>com.google.code.gson</groupId>

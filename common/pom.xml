@@ -19,6 +19,7 @@
 
     <modules>
         <module>service_base</module>
+        <module>common_util</module>
     </modules>
 
 
@@ -42,17 +43,6 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!--swagger-->
-<!--        <dependency>-->
-<!--            <groupId>io.springfox</groupId>-->
-<!--            <artifactId>springfox-swagger2</artifactId>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.springfox</groupId>-->
-<!--            <artifactId>springfox-swagger-ui</artifactId>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>com.github.xiaoymin</groupId>

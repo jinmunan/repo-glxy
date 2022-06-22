@@ -1,4 +1,4 @@
-package com.cj.edu.config;
+package com.cj.guli.service.edu.base.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import lombok.extern.slf4j.Slf4j;
