@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 事件指令： v-on -->
+        <button v-on:click="show()">查询</button>
+        <!-- v-on 指令的简写形式 @ -->
+        <button @click="search()">查询</button>
+    </div>
+    
+    <script src="vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            methods: {
+                show(){
+                    console.log(new Date())
+                }
+            }
+        })    
+    </script>
+</body>
+</html>

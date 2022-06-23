@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <h1 id="h1">{{message}}</h1>
+    </div>
+    
+    <script src="vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data () {
+                return {
+                    message: '床前明月光'
+                }
+            },
+            
+            //页面创建成功：vue对象的变量和方法就已经初始化成功，创建成功，但是没有显示
+            created(){
+                console.log('created先被调用')
+                console.log(this.message)
+                this.show()
+                let h1 = document.getElementById('h1')
+                console.log('h1的内容：' + h1.innerText)
+            },
+
+
+            //页面渲染成功：创建成功并显示出来
+            mounted(){
+                console.log('mounted后被调用')
+                console.log(this.message)
+                this.show()
+                let h1 = document.getElementById('h1')
+                console.log('h1的内容：' + h1.innerText)
+            },
+
+            methods:{
+                show(){
+                    console.log('show被调用')
+                }
+            }
+        })    
+    </script>
+</body>
+</html>

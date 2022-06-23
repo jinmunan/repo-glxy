@@ -23,6 +23,7 @@ import java.util.List;
  * @author jinmunan
  * @since 2022-06-22
  */
+@CrossOrigin //解决跨域问题
 @Api(tags = "讲师管理")
 @RestController
 @RequestMapping("/admin/edu/teacher")

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <input type="checkbox" v-model="ok">同意许可协议
+
+        <!-- v-if：渲染的时候直接对dom进行增加或删除 -->
+        <!-- 初始化开销小：渲染需要的节点；切换开销大：切换时需要创建和删除节点 -->
+        <h1 v-if="ok">协议内容。。。。。</h1>
+        <h2 v-else>不显示</h2>
+
+        <!-- 初始化开销大：渲染所有节点；切换开销小：切换时只需要修改节点的显示属性 -->
+        <h3 v-show="ok">协议内容。。。。。</h3>
+        <h3 v-show="!ok">不显示</h3>
+    </div>
+
+    <script src="vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data () {
+                return {
+                    ok: false
+                }
+            }
+        })    
+    </script>
+</body>
+</html>
