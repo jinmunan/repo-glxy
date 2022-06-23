@@ -39,3 +39,9 @@ mybatis-plus:
 # 服务端口
 server:
   port: 8001
+
+
+# 统一日志处理
+logging:
+  level:
+    root: INFO

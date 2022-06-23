@@ -39,12 +39,16 @@
         <!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
         <!--        </dependency>-->
 
+
+
         <!--引入自定义的common模块的依赖-->
         <dependency>
             <groupId>com.cj</groupId>
             <artifactId>service_base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+
 
         <!--springboot-web起步依赖-->
         <dependency>
