@@ -32,7 +32,7 @@ public class TeacherController {
     private TeacherService teacherService;
 
     @ApiOperation("教师列表")
-    @GetMapping
+    @GetMapping("/list")
     public R list() {
         return R.ok().data("items", teacherService.list(null));
     }
