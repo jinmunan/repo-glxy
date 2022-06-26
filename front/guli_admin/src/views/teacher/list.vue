@@ -53,6 +53,9 @@
       <el-table-column prop="joinDate" label="入驻时间" width="160"/>
       <el-table-column label="操作" width="200" align="center">
         <template slot-scope="scope">
+          <router-link :to="'/teacher/edit/'+scope.row.id">
+            <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
+          </router-link>
           <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeById(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>

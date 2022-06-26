@@ -8,15 +8,16 @@ spring:
   # mysql数据库连接
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #    url: jdbc:mysql://localhost:3306/ly-db-glxy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-    url: jdbc:mysql://localhost:3306/ly-db-glxy-edu?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://91.200.242.122:3306/ly-db-glxy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: zn171912
   #  datasource:
   #    driver-class-name: com.mysql.cj.jdbc.Driver
-  #    url: jdbc:mysql://91.200.242.122:3306/ly-db-glxy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+  #    #    url: jdbc:mysql://localhost:3306/ly-db-glxy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+  #    url: jdbc:mysql://localhost:3306/ly-db-glxy-edu?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
   #    username: root
-  #    password: zn171912
+  #    password: 123456
+
 
   # 统一返回的json时间格式
   jackson:

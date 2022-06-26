@@ -17,11 +17,33 @@ export default {
     })
   },
 
-  /* 删除教师*/
   removeById(id) {
     return request({
       url: `/admin/edu/teacher/remove/${id}`,
       method: 'delete'
+    })
+  },
+
+  save(teacher) {
+    return request({
+      url: '/admin/edu/teacher/save',
+      method: 'post',
+      data: teacher
+    })
+  },
+
+  getById(id) {
+    return request({
+      url: `/admin/edu/teacher/get/${id}`,
+      method: 'get'
+    })
+  },
+
+  updateById(teacher) {
+    return request({
+      url: '/admin/edu/teacher/update',
+      method: 'put',
+      data: teacher
     })
   }
 }
