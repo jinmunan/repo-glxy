@@ -1,4 +1,4 @@
-package com.cj.guli.service.edu.base.config;
+package com.cj.guli.service.base.config;
 
 
 import com.baomidou.mybatisplus.annotation.DbType;

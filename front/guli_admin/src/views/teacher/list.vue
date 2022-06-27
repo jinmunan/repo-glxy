@@ -3,7 +3,14 @@
     <!--查询表单-->
     <el-form :inline="true">
       <el-form-item>
-        <el-input v-model="searchObj.name" placeholder="讲师"/>
+        <!--<el-input v-model="searchObj.name" placeholder="讲师"/>-->
+        <el-autocomplete
+          v-model="searchObj.name"
+          :fetch-suggestions="querySearch"
+          :trigger-on-focus="false"
+          class="inline-input"
+          placeholder="讲师名称"
+          value-key="name"/>
       </el-form-item>
       <el-form-item>
         <el-select v-model="searchObj.level" clearable placeholder="头衔">
@@ -28,8 +35,15 @@
         <el-button type="default" @click="resetData()">清空</el-button>
       </el-form-item>
     </el-form>
+
+    <!-- 工具按钮 -->
+    <div style="margin-bottom: 10px">
+      <el-button type="danger" size="mini" @click="batchRemove()">批量删除</el-button>
+    </div>
+
     <!-- 表格 -->
-    <el-table :data="list" border>
+    <el-table :data="list" border stripe @selection-change="handleSelectionChange">
+      <el-table-column type="selection"/>
       <el-table-column
         label="#"
         width="50">
@@ -38,6 +52,12 @@
         </template>
       </el-table-column>
       <el-table-column prop="name" label="名称" width="80"/>
+      <!-- 讲师头像 -->
+      <el-table-column prop="avatar" label="头像" width="101">
+        <template slot-scope="scope">
+          <img :src="scope.row.avatar" width="80" height="80">
+        </template>
+      </el-table-column>
       <el-table-column label="头衔" width="90">
         <template slot-scope="scope">
           <!--可以获得当前行的数据,类似于当前行对象
@@ -85,7 +105,8 @@ export default {
       total: 0, // 总记录数量
       page: 1, // 页码
       limit: 10, // 每页记录数量
-      searchObj: {} // 查询条件
+      searchObj: {}, // 查询条件
+      multipleSelection: []// 批量删除选中的记录列表
     }
   },
 
@@ -104,6 +125,7 @@ export default {
       })
       // 失败的话 .catch()会被同意拦截  通过code
     },
+
     // 根据id删除数据
     removeById(id) {
       this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
@@ -124,21 +146,70 @@ export default {
         }
       })
     },
+
     // 每页记录数改变，size：回调参数，表示当前选中的“每页条数”[每页条数]
     changePageSize(size) {
       this.limit = size
       this.fetchData()
     },
+
     // 改变页码，page：回调参数，表示当前选中的“页码” [左右翻页]
     changeCurrentPage(page) {
       this.page = page
       this.fetchData()
     },
+
     // 重置表单
     resetData() {
       this.searchObj = {}
       this.fetchData()
+    },
+
+    // 当多选选项发生变化的时候调用
+    handleSelectionChange(selection) {
+      console.log(selection)
+      // 拿到id列表
+      this.multipleSelection = selection
+    },
+
+    // 批量删除
+    batchRemove() {
+      console.log('removeRows......')
+
+      if (this.multipleSelection.length === 0) {
+        this.$message.warning('请选择要删除的记录！')
+        return
+      }
+
+      this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // 点击确定，远程调用ajax
+        // 遍历selection，将id取出放入id列表
+        var idList = []
+        this.multipleSelection.forEach(item => {
+          idList.push(item.id)
+        })
+        // 调用api
+        return teacherApi.batchRemove(idList)
+      }).then((response) => {
+        this.fetchData()
+        this.$message.success(response.message)
+      }).catch(error => {
+        if (error === 'cancel') {
+          this.$message.info('取消删除')
+        }
+      })
+    },
+
+    querySearch(queryString, callback) {
+      teacherApi.selectNameListByKey(queryString).then(response => {
+        callback(response.data.nameList)
+      })
     }
   }
 }
+
 </script>

@@ -11,6 +11,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * 讲师 服务实现类
@@ -22,13 +25,6 @@ import org.springframework.util.StringUtils;
 @Service
 public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> implements TeacherService {
 
-    /**
-     * 分页查询和条件查询
-     *
-     * @param pageParam
-     * @param teacherQueryVo
-     * @return
-     */
     @Override
     public IPage<Teacher> selectPage(Page<Teacher> pageParam, TeacherQueryVo teacherQueryVo) {
         // 显示分页查询列表
@@ -65,5 +61,24 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         }
 
         return baseMapper.selectPage(pageParam, queryWrapper);
+    }
+
+    /**
+     * List<Map<String,Object>>
+     * [
+     * {"name":"周杰伦"}
+     * {"name":"周润发"}
+     * ]
+     * select * from teacher where name like '周%'
+     * @param key 讲师姓名关键字
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> selectNameListByKey(String key) {
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("name");
+        queryWrapper.likeRight("name", key);
+        //返回值是Map列表
+        return baseMapper.selectMaps(queryWrapper);
     }
 }

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cj.guli.common.base.result.R;
 import com.cj.guli.service.edu.entity.Teacher;
 import com.cj.guli.service.edu.entity.vo.TeacherQueryVo;
+import com.cj.guli.service.edu.feign.OssFileService;
 import com.cj.guli.service.edu.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -28,8 +30,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/edu/teacher")
 public class TeacherController {
+
     @Autowired
     private TeacherService teacherService;
+
+    @Autowired
+    private OssFileService ossFileService;
 
     @ApiOperation("教师列表")
     @GetMapping("/list")
@@ -106,5 +112,43 @@ public class TeacherController {
         }
     }
 
+    @ApiOperation(value = "根据id列表删除讲师")
+    @DeleteMapping("batch-remove")
+    public R removeRows(
+            @ApiParam(value = "讲师id列表", required = true)
+            @RequestBody List<String> idList) {
+        boolean result = teacherService.removeByIds(idList);
+        if (result) {
+            return R.ok().message("删除成功");
+        } else {
+            return R.error().message("数据不存在");
+        }
+    }
 
+    /**
+     * 自动完成功能
+     * @param key
+     * @return
+     */
+    @ApiOperation("根据左关键字查询讲师名列表")
+    @GetMapping("list/name/{key}")
+    public R selectNameListByKey(
+            @ApiParam(value = "查询关键字", required = true)
+            @PathVariable String key) {
+
+        List<Map<String, Object>> nameList = teacherService.selectNameListByKey(key);
+
+        return R.ok().data("nameList", nameList);
+    }
+
+    /**
+     * 微服务调用
+     * @return
+     */
+    @ApiOperation("测试服务调用")
+    @GetMapping("test")
+    public R test(){
+        ossFileService.test();
+        return R.ok();
+    }
 }

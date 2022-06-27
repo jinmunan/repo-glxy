@@ -1,4 +1,4 @@
-package com.cj.guli.service.edu.base.model;
+package com.cj.guli.service.base.model;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;

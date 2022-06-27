@@ -1,9 +1,10 @@
-package com.cj.guli.service.edu.base.handler;
+package com.cj.guli.service.base.handler;
 
 
 import com.cj.guli.common.base.result.R;
 import com.cj.guli.common.base.result.ResultCodeEnum;
 import com.cj.guli.common.base.util.ExceptionUtils;
+import com.cj.guli.service.base.exception.GuliException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.jdbc.BadSqlGrammarException;
@@ -44,5 +45,13 @@ public class GlobalExceptionHandler {
     public R error(HttpMessageNotReadableException e) {
         log.error(ExceptionUtils.getMessage(e));
         return R.setResult(ResultCodeEnum.JSON_PARSE_ERROR);
+    }
+
+    // 捕获自定义异常
+    @ExceptionHandler(GuliException.class)
+    @ResponseBody
+    public R error(GuliException e){
+        log.error(ExceptionUtils.getMessage(e));
+        return R.error().message(e.getMessage()).code(e.getCode());
     }
 }

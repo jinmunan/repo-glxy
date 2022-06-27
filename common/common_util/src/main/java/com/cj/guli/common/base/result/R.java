@@ -41,6 +41,7 @@ public class R {
     // 失败
     public static R error(){
         R r = new R();
+        // 复用了未知错误的success
         r.setSuccess(ResultCodeEnum.UNKNOWN_REASON.getSuccess());
         r.setCode(ResultCodeEnum.UNKNOWN_REASON.getCode());
         r.setMessage(ResultCodeEnum.UNKNOWN_REASON.getMessage());

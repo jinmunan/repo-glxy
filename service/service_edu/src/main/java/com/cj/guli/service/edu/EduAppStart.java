@@ -3,6 +3,8 @@ package com.cj.guli.service.edu;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
@@ -16,6 +18,8 @@ import java.net.InetAddress;
 @SpringBootApplication
 // 扫描其他模块的类,加载swagger的配置文件 {跨模块的@Configuration 无法自动加载}
 @ComponentScan(basePackages = {"com.cj.guli"})
+@EnableDiscoveryClient // nacos服务注册
+@EnableFeignClients // openfeign远程调用,消费者就是调用者，调用者添加远程调用
 public class EduAppStart {
 	public static void main(String[] args) throws Exception {
 		ConfigurableApplicationContext application = SpringApplication.run(EduAppStart.class, args);

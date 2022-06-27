@@ -1,4 +1,4 @@
-package com.cj.guli.service.edu.base.config;
+package com.cj.guli.service.base.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -11,8 +11,6 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
-
-import java.util.function.Predicate;
 
 /**
  * Created by Jinmunan

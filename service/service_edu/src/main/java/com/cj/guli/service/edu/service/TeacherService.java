@@ -6,6 +6,9 @@ import com.cj.guli.service.edu.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cj.guli.service.edu.entity.vo.TeacherQueryVo;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * 讲师 服务类
@@ -16,5 +19,18 @@ import com.cj.guli.service.edu.entity.vo.TeacherQueryVo;
  */
 public interface TeacherService extends IService<Teacher> {
 
+    /**
+     * 分页查询
+     * @param pageParam 参数
+     * @param teacherQueryVo 讲师vo
+     * @return 讲师列表
+     */
     IPage<Teacher> selectPage(Page<Teacher> pageParam, TeacherQueryVo teacherQueryVo);
+
+    /**
+     * 自动完成功能
+     * @param key 讲师姓名关键字
+     * @return 名字列表
+     */
+    List<Map<String, Object>> selectNameListByKey(String key);
 }

@@ -19,7 +19,7 @@ export default {
 
   removeById(id) {
     return request({
-      url: `/admin/edu/teacher/remove/${id}`,
+      url: `/admin/edu/teacher/${id}`,
       method: 'delete'
     })
   },
@@ -44,6 +44,21 @@ export default {
       url: '/admin/edu/teacher/update',
       method: 'put',
       data: teacher
+    })
+  },
+
+  batchRemove(idList) {
+    return request({
+      url: '/admin/edu/teacher/batch-remove',
+      method: 'delete',
+      data: idList
+    })
+  },
+
+  selectNameListByKey(key) {
+    return request({
+      url: `/admin/edu/teacher/list/name/${key}`,
+      method: 'get'
     })
   }
 }

@@ -2,7 +2,7 @@ package com.cj.guli.service.edu.entity;
 
 import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cj.guli.service.edu.base.model.BaseEntity;
+import com.cj.guli.service.base.model.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
