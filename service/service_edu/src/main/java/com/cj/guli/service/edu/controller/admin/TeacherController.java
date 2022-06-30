@@ -174,13 +174,23 @@ public class TeacherController {
 
 	/**
 	 * 测试并发
+	 *
 	 * @return
 	 */
 	@ApiOperation("测试并发")
 	@GetMapping("test_concurrent")
-	public R testConcurrent(){
+	public R testConcurrent() {
 		log.info("test_concurrent");
 		return R.ok();
 	}
 
+	@GetMapping("/message1")
+	public String message1() {
+		return "message1";
+	}
+
+	@GetMapping("/message2")
+	public String message2() {
+		return "message2";
+	}
 }

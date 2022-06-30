@@ -29,6 +29,12 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+    #spring:
+    #  cloud:
+    sentinel:
+      transport:
+        port: 8081 #跟控制台交流的端口，随意指定一个未使用的端口即可
+        dashboard: localhost:8080 # 指定控制台服务的地址
 
 # mybatis日志
 mybatis-plus:
@@ -68,3 +74,4 @@ ribbon:
   logging:
     level:
       com.cj.guli.service.edu.feign.OssFileService: debug #以什么级别监控哪个接口
+
