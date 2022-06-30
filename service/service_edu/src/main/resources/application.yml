@@ -53,3 +53,16 @@ logging:
   level:
     root: INFO
 
+#service-product: # 调用的提供者的名称
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+# openfeign中的ribbon
+ribbon:
+  MaxAutoRetries: 0 # 同一实例最大重试次数，不包括首次调用，默认0
+  MaxAutoRetriesNextServer: 1 # 重试其他实例的最大重试次数，不包括首次所选的server，默认1
+  ConnectTimeout: 5000 #连接建立的超时时长，默认1秒
+  ReadTimeout: 5000 #处理请求的超时时间，默认为1秒
+  logging:
+    level:
+      com.cj.guli.service.edu.feign.OssFileService: debug #以什么级别监控哪个接口

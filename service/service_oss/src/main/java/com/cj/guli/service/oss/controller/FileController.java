@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @version 1.0
@@ -43,6 +44,8 @@ public class FileController {
             @ApiParam(value = "模块", required = true)
             @RequestParam("module") String module) {
 
+        log.info("上传照片");
+
         try {
             InputStream inputStream = file.getInputStream();
             String originalFilename = file.getOriginalFilename();
@@ -61,6 +64,12 @@ public class FileController {
     @GetMapping("test")
     public R test() {
         log.info("oss test被调用");
+        try {
+            log.info("超时服务调用");
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return R.ok();
     }
 }

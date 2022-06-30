@@ -16,6 +16,7 @@ import java.util.UUID;
  * Created by Jinmunan
  * 2022/6/27
  * 9:06
+ *
  * @author THINKPAD
  */
 
@@ -59,6 +60,27 @@ public class FileServiceImpl implements FileService {
 
         //返回url地址
         return "https://" + bucketname + "." + endpoint + "/" + key;
+    }
+
+    @Override
+    public void removeFile(String url) {
+        String endpoint = ossProperties.getEndpoint();
+        String keyid = ossProperties.getKeyid();
+        String keysecret = ossProperties.getKeysecret();
+        String bucketname = ossProperties.getBucketname();
+
+        //判断oss实例是否存在：如果不存在则创建，如果存在则获取
+        OSS ossClient = new OSSClientBuilder().build(endpoint, keyid, keysecret);
+        String host = "https://" + bucketname + "." + endpoint + "/";
+
+        // 获取图片的名字
+        String objectName = url.substring(host.length());
+
+        // 删除图片
+        ossClient.deleteObject(bucketname, objectName);
+
+        //关闭实例
+        ossClient.shutdown();
     }
 
 }

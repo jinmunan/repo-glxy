@@ -19,4 +19,5 @@ public interface OssFileService {
 
     @GetMapping("/admin/oss/file/test")
     R test();
+
 }

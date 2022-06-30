@@ -25,3 +25,4 @@ aliyun:
 logging:
   level:
     root: INFO
+

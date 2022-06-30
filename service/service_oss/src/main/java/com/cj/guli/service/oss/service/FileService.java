@@ -16,4 +16,12 @@ public interface FileService {
      * @return 文件在oos服务器上的url地址
      */
     String upload(InputStream inputStream, String module, String originalFilename);
+
+
+    /**
+     * 删除阿里云头像
+     * @param url
+     */
+    void removeFile(String url);
+
 }
