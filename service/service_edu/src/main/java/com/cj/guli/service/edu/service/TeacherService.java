@@ -33,4 +33,12 @@ public interface TeacherService extends IService<Teacher> {
      * @return 名字列表
      */
     List<Map<String, Object>> selectNameListByKey(String key);
+
+    /**
+     * 删除照片 调用feign接口删除oss
+     * @param id
+     */
+    boolean removeAvatarById(String id);
+
+
 }
