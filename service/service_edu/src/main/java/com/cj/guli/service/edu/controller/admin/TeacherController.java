@@ -131,6 +131,8 @@ public class TeacherController {
 			@RequestBody List<String> idList) {
 
 		// 删除图片
+		// 如果oss服务宕机的话,他的返回值都是false,其实不用去判断
+		
 		idList.forEach(id -> teacherService.removeAvatarById(id));
 
 
