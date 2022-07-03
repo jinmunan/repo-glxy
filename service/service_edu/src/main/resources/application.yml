@@ -7,16 +7,16 @@ spring:
     active: dev
     # mysql数据库连接
   datasource:
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    #    url: jdbc:mysql://localhost:3306/ly-db-glxy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    #    url: jdbc:mysql://localhost:3306/ly-db-glxy-edu?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    #    username: root
+    #    password: 123456
+    #    #  datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #    url: jdbc:mysql://localhost:3306/ly-db-glxy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-    url: jdbc:mysql://localhost:3306/ly-db-glxy-edu?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://91.200.242.122:3306/ly-db-glxy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
-    password: 123456
-    #  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://91.200.242.122:3306/ly-db-glxy?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-#    username: root
-#    password: zn171912
+    password: zn171912
 
 
   # 统一返回的json时间格式
@@ -52,7 +52,8 @@ mybatis-plus:
     #      logic-delete-field: flag # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
     #      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
     #      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-
+    # 定义mybatis,xml文件的地址
+  mapper-locations: classpath:com/cj/guli/service/edu/mapper/xml/*.xml
 # 服务端口
 server:
   port: 8001

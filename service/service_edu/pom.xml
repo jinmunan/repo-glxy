@@ -14,9 +14,11 @@
 
     <dependencies>
 
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
+            <version>2.1.1</version>
         </dependency>
 
         <dependency>
@@ -28,4 +30,17 @@
     </dependencies>
 
 
+    <build>
+        <!-- 项目打包时会将java目录中的*.xml文件也进行打包 -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <!--不把xml文件过滤 一同打包的target-->
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

@@ -61,12 +61,22 @@ export default {
       this.$refs.upload.submit() // 提交上传请求
     },
 
+    // 上传成功的回调
     fileUploadSuccess(response) {
-
+      if (response.success) {
+        this.importBtnDisabled = false // 启用按钮
+        this.$message.success(response.message)
+        this.$refs.upload.clearFiles() // 清空文件列表
+      } else {
+        this.$message.error('上传失败! （非20000）')
+      }
     },
 
-    fileUploadError(response) {
-
+    // 上传失败的回调
+    fileUploadError() {
+      this.importBtnDisabled = false // 启用按钮
+      this.$message.error('上传失败! （http失败）')
+      this.$refs.upload.clearFiles() // 清空文件列表
     }
   }
 

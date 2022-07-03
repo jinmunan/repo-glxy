@@ -2,6 +2,9 @@ package com.cj.guli.service.edu.mapper;
 
 import com.cj.guli.service.edu.entity.Subject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.cj.guli.service.edu.entity.vo.SubjectVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface SubjectMapper extends BaseMapper<Subject> {
 
+	/**
+	 * 嵌套数据列表
+	 * @param s
+	 * @return
+	 */
+	List<SubjectVo> selectNestedListByParentId(String parentId);
 }
