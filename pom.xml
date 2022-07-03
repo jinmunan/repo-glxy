@@ -8,7 +8,6 @@
     <modules>
         <module>common</module>
         <module>service</module>
-        <module>easyexceldemo</module>
     </modules>
 
 
@@ -51,6 +50,8 @@
         <canal.client.version>1.1.0</canal.client.version>
         <docker.image.prefix>zx</docker.image.prefix>
         <cloud-alibaba.version>2.1.0.RELEASE</cloud-alibaba.version>
+        <easyexcel-version>2.1.1</easyexcel-version>
+
     </properties>
 
 
@@ -212,6 +213,7 @@
                 <artifactId>canal.client</artifactId>
                 <version>${canal.client.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
