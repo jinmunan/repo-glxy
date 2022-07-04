@@ -23,27 +23,48 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService {
 
-    @Autowired
-    private CourseDescriptionMapper courseDescriptionMapper;
+	@Autowired
+	private CourseDescriptionMapper courseDescriptionMapper;
 
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public String saveCourseInfo(CourseInfoForm courseInfoForm) {
-        // 保存课程基本信息
-        Course course = new Course();
-        course.setStatus(Course.COURSE_DRAFT); //草稿状态
-        // 复制属性
-        BeanUtils.copyProperties(courseInfoForm, course);
-        baseMapper.insert(course);
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String saveCourseInfo(CourseInfoForm courseInfoForm) {
+		// 保存课程基本信息
+		Course course = new Course();
+		course.setStatus(Course.COURSE_DRAFT); //草稿状态
+		// 复制属性
+		BeanUtils.copyProperties(courseInfoForm, course);
+		baseMapper.insert(course);
 
-        // 保存课程详情
-        String courseId = course.getId();
-        CourseDescription courseDescription = new CourseDescription();
-        courseDescription.setId(courseId);
-        courseDescription.setDescription(courseInfoForm.getDescription());
-        courseDescriptionMapper.insert(courseDescription);
+		// 保存课程详情
+		String courseId = course.getId();
+		CourseDescription courseDescription = new CourseDescription();
+		courseDescription.setId(courseId);
+		courseDescription.setDescription(courseInfoForm.getDescription());
+		courseDescriptionMapper.insert(courseDescription);
 
-        return courseId;
+		return courseId;
 
-    }
+	}
+
+	@Override
+	public CourseInfoForm getCourseInfoById(String id) {
+		// 从course表中获取数据
+		Course course = baseMapper.selectById(id);
+		if (course == null) {
+			return null;
+		}
+
+		// 从course——description表中获取数据
+		//从course_description表中取数据
+		CourseDescription courseDescription = courseDescriptionMapper.selectById(id);
+
+		//创建courseInfoForm对象
+		CourseInfoForm courseInfoForm = new CourseInfoForm();
+		BeanUtils.copyProperties(course, courseInfoForm);
+		courseInfoForm.setDescription(courseDescription.getDescription());
+
+		return courseInfoForm;
+
+	}
 }
