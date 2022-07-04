@@ -88,6 +88,42 @@ export const constantRouterMap = [
       }
     ]
   },
+  // 课程管理
+  {
+    path: '/course',
+    component: Layout,
+    redirect: '/course/list',
+    name: 'Course',
+    meta: { title: '课程管理' },
+    children: [
+      {
+        path: 'list',
+        name: 'CourseList',
+        component: () => import('@/views/course/list'),
+        meta: { title: '课程列表' }
+      },
+      {
+        path: 'info',
+        name: 'CourseInfo',
+        component: () => import('@/views/course/form'),
+        meta: { title: '发布课程' }
+      },
+      {
+        path: 'info/:id',
+        name: 'CourseInfoEdit',
+        component: () => import('@/views/course/form'),
+        meta: { title: '编辑课程' },
+        hidden: true
+      },
+      {
+        path: 'chapter/:id',
+        name: 'CourseChapterEdit',
+        component: () => import('@/views/course/form'),
+        meta: { title: '编辑大纲' },
+        hidden: true
+      }
+    ]
+  },
 
   { path: '*', redirect: '/404', hidden: true }
 ]

@@ -6,5 +6,5 @@ export default {
       url: '/admin/edu/subject/nested-list',
       method: 'get'
     })
-  }
+  },
 }
